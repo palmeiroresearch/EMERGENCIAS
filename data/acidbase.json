@@ -1,0 +1,393 @@
+{
+  "acidosis_metabolica": {
+    "nombre": "Acidosis Metabólica",
+    "categoria": "acidobase",
+    "criterio": "pH <7.35 y HCO3 <22 mEq/L",
+    
+    "clasificacion_anion_gap": {
+      "formula": "AG = Na - (Cl + HCO3)",
+      "normal": "8-12 mEq/L",
+      
+      "ag_elevado": {
+        "valor": ">12 mEq/L",
+        "causas_mudpiles": {
+          "M": "Metanol",
+          "U": "Uremia",
+          "D": "Cetoacidosis diabética",
+          "P": "Paraldehído, Propilen glicol",
+          "I": "Isoniazida, Hierro",
+          "L": "Acidosis láctica",
+          "E": "Etilenglicol",
+          "S": "Salicilatos"
+        }
+      },
+      
+      "ag_normal": {
+        "valor": "8-12 mEq/L",
+        "causas": ["Diarrea", "Acidosis tubular renal", "Pérdidas urinarias HCO3"]
+      }
+    },
+
+    "acidosis_lactica": {
+      "tipo_a": {
+        "nombre": "Hipoperfusión tisular",
+        "causas": ["Shock", "Sepsis", "Hipoxia severa", "Convulsiones", "Ejercicio extremo"],
+        "tratamiento": "Corregir causa subyacente (mejorar perfusión, oxigenación)"
+      },
+      "tipo_b": {
+        "nombre": "Sin hipoperfusión",
+        "causas": ["Metformina", "Cianuro", "Insuficiencia hepática", "Neoplasias"],
+        "tratamiento": "Suspender agente causal, soporte"
+      }
+    },
+
+    "cetoacidosis_diabetica": {
+      "criterios": ["Glicemia >250 mg/dL", "pH <7.3", "HCO3 <18", "Cetonas positivas"],
+      
+      "tratamiento": {
+        "hidratacion": {
+          "inicial": "SSN 0.9% 1-2L en primera hora",
+          "luego": "250-500 ml/h según estado hemodinámico",
+          "meta": "Reposición déficit 50% en 12h, resto en 24h"
+        },
+        
+        "insulina": {
+          "sin_hipocalemia": {
+            "bolo": "0.1 UI/kg IV (puede omitirse)",
+            "infusion": "0.1 UI/kg/h",
+            "meta": "Descenso glicemia 50-75 mg/dL por hora"
+          },
+          "con_hipocalemia": "Reponer K+ antes de insulina"
+        },
+        
+        "potasio": {
+          "si_k_menor_3_3": "Reponer K+ antes de insulina",
+          "si_k_3_3_a_5": "Agregar 20-30 mEq/L a líquidos IV",
+          "si_k_mayor_5": "No reponer, monitorear"
+        },
+        
+        "bicarbonato": {
+          "indicacion": "SOLO si pH <6.9",
+          "dosis": "100 mEq NaHCO3 en 400ml agua estéril con 20mEq KCl en 2h",
+          "controversia": "Uso muy limitado"
+        },
+        
+        "cuando_cambiar_liquidos": {
+          "criterio": "Glicemia <250 mg/dL",
+          "cambiar_a": "DW5% + SSN 0.45% con 20-30 mEq KCl/L",
+          "razon": "Prevenir hipoglucemia mientras se corrige acidosis"
+        }
+      },
+      
+      "criterios_resolucion": [
+        "Glicemia <200 mg/dL",
+        "pH >7.3",
+        "HCO3 >15 mEq/L",
+        "Anion gap <12"
+      ],
+      
+      "transicion": "Iniciar insulina SC cuando pueda comer, mantener IV 1-2h después de SC"
+    },
+
+    "tratamiento_bicarbonato": {
+      "indicaciones_controvertidas": [
+        "pH <7.1 (única indicación relativa)",
+        "Hipercalemia severa (temporización)",
+        "Intoxicación ADT, cocaína"
+      ],
+      
+      "calculo": {
+        "formula": "mEq HCO3 = 0.3 × peso (kg) × (HCO3 deseado - actual)",
+        "ejemplo": "Paciente 70kg con HCO3 8, desea 15: 0.3 × 70 × 7 = 147 mEq",
+        "administracion": "Dar la mitad en 3-4 horas, reevaluar"
+      },
+      
+      "precauciones": [
+        "Sobrecarga de Na+",
+        "Alcalosis de rebote",
+        "↑PCO2 (empeora acidosis intracelular)",
+        "Hipocalemia",
+        "Hipoxia tisular (desviación curva Hb)"
+      ]
+    }
+  },
+
+  "alcalosis_metabolica": {
+    "nombre": "Alcalosis Metabólica",
+    "categoria": "acidobase",
+    "criterio": "pH >7.45 y HCO3 >26 mEq/L",
+    
+    "clasificacion": {
+      "salino_sensible": {
+        "cl_urinario": "<20 mEq/L",
+        "causas": ["Vómitos", "SNG", "Diuréticos", "Post-hipercapnia"],
+        "tratamiento": "SSN 0.9%"
+      },
+      "salino_resistente": {
+        "cl_urinario": ">20 mEq/L",
+        "causas": ["Hiperaldosteronismo", "Síndrome Cushing", "Exceso mineralocorticoides"],
+        "tratamiento": "Corregir causa, ahorradores de K+"
+      }
+    },
+
+    "tratamiento": {
+      "salino_sensible": {
+        "hidratacion": "SSN 0.9% 100-200 ml/h",
+        "reposicion_k": "KCl según necesidad",
+        "meta": "Corregir contracción volumen"
+      },
+      "salino_resistente": {
+        "espironolactona": "25-100 mg/día",
+        "amilorida": "5-10 mg/día",
+        "tratar_causa": "Corregir hiperaldosteronismo"
+      },
+      "severa": {
+        "criterio": "pH >7.6",
+        "opciones": ["Acetazolamida 250-500mg", "HCl 0.1N (UCI)", "Hemodiálisis"]
+      }
+    }
+  },
+
+  "hipercalemia": {
+    "nombre": "Hipercalemia",
+    "categoria": "electrolitos",
+    "niveles": {
+      "leve": "5.5-6.0 mEq/L",
+      "moderada": "6.1-7.0 mEq/L",
+      "severa": ">7.0 mEq/L"
+    },
+
+    "manifestaciones": {
+      "ecg": ["Ondas T picudas", "↑PR", "↓QRS", "Pérdida onda P", "Ritmo sinusoidal"],
+      "neuromusculares": ["Debilidad", "Parálisis", "Parestesias"]
+    },
+
+    "tratamiento_urgente": {
+      "paso_1_cardioproteccion": {
+        "cuando": "Cambios ECG o K >6.5",
+        "medicamento": "Gluconato de calcio",
+        "dosis": "1-2g (10-20ml al 10%) IV lento en 2-5min",
+        "inicio": "1-3 minutos",
+        "duracion": "30-60 minutos",
+        "repetir": "Si persisten cambios ECG",
+        "nota": "NO corrige K+, solo estabiliza membrana"
+      },
+
+      "paso_2_shift_intracelular": {
+        "opciones": [
+          {
+            "medicamento": "Insulina + Dextrosa",
+            "dosis": "10 UI insulina regular IV + 25g dextrosa (50ml DW50%)",
+            "inicio": "10-20 minutos",
+            "descenso_k": "0.5-1.5 mEq/L",
+            "duracion": "4-6 horas",
+            "precaucion": "Monitorear glicemia"
+          },
+          {
+            "medicamento": "Salbutamol nebulizado",
+            "dosis": "10-20mg en nebulización",
+            "inicio": "30 minutos",
+            "descenso_k": "0.5-1.0 mEq/L",
+            "nota": "Sinergístico con insulina"
+          },
+          {
+            "medicamento": "Bicarbonato de sodio",
+            "indicacion": "Si acidosis metabólica asociada",
+            "dosis": "50 mEq IV en 5 min",
+            "inicio": "30-60 minutos",
+            "controversia": "Eficacia cuestionable si no acidosis"
+          }
+        ]
+      },
+
+      "paso_3_eliminacion": {
+        "opciones": [
+          {
+            "medicamento": "Furosemida",
+            "dosis": "40-80mg IV",
+            "cuando": "Función renal preservada",
+            "nota": "Aumenta excreción urinaria K+"
+          },
+          {
+            "medicamento": "Resinas (Kayexalate)",
+            "dosis": "15-30g VO/rectal",
+            "inicio": "2-4 horas",
+            "limitacion": "Lenta, útil en hipercalemia crónica",
+            "disponibilidad_cuba": "baja"
+          },
+          {
+            "procedimiento": "Hemodiálisis",
+            "indicacion": "K >7, cambios ECG severos, IR, refractaria a tratamiento",
+            "mas_efectivo": "Elimina K+ definitivamente"
+          }
+        ]
+      }
+    },
+
+    "manejo_cronico": {
+      "dieta": "Restringir K+ <50 mEq/día",
+      "suspender": ["IECA", "ARA-II", "Ahorradores de K+", "AINE"],
+      "diureticos": "Furosemida si indicado"
+    }
+  },
+
+  "hipocalemia": {
+    "nombre": "Hipocalemia",
+    "categoria": "electrolitos",
+    "niveles": {
+      "leve": "3.0-3.5 mEq/L",
+      "moderada": "2.5-3.0 mEq/L",
+      "severa": "<2.5 mEq/L"
+    },
+
+    "manifestaciones": {
+      "ecg": ["Aplanamiento onda T", "Onda U prominente", "↑QT", "Arritmias"],
+      "neuromusculares": ["Debilidad", "Calambres", "Rabdomiólisis", "Íleo paralítico"]
+    },
+
+    "reposicion": {
+      "oral": {
+        "cuando": "K+ 2.5-3.5 y asintomático",
+        "dosis": "40-100 mEq/día dividido",
+        "presentacion": "KCl tabletas"
+      },
+      
+      "intravenosa": {
+        "cuando": "K+ <2.5 o sintomático",
+        "concentracion_segura": "≤40 mEq/L",
+        "velocidad_periferica": "≤10 mEq/h",
+        "velocidad_central": "Hasta 20 mEq/h (monitoreo continuo)",
+        "max_infusion": "200 mEq/24h",
+        
+        "ejemplo": {
+          "preparacion": "40 mEq KCl en 1000ml SSN",
+          "velocidad": "100 ml/h = 4 mEq/h (seguro)",
+          "reevaluar": "Cada 20-40 mEq administrados"
+        },
+        
+        "precauciones": [
+          "NUNCA bolo IV directo",
+          "Monitorear ECG si infusión rápida",
+          "Verificar diuresis adecuada",
+          "Corregir Mg si hipomagnesemia"
+        ]
+      }
+    },
+
+    "calculo_deficit": {
+      "formula": "Déficit K+ (mEq) = (K deseado - K actual) × peso × 0.4",
+      "ejemplo": "Paciente 70kg con K 2.5, desea 3.5: (3.5-2.5) × 70 × 0.4 = 28 mEq",
+      "nota": "Fórmula aproximada, guiarse por niveles seriados"
+    }
+  },
+
+  "hiponatremia": {
+    "nombre": "Hiponatremia",
+    "categoria": "electrolitos",
+    "definicion": "Na <135 mEq/L",
+    
+    "clasificacion_osmolaridad": {
+      "hipotonica": {
+        "osm_plasmatica": "<280 mOsm/kg",
+        "tipos": [
+          {
+            "nombre": "Hipovolémica",
+            "causas": ["Diuréticos", "Diarrea", "Vómitos", "Nefropatía pierde-sal"],
+            "na_urinario": ">20 si renal, <20 si extrarrenal"
+          },
+          {
+            "nombre": "Euvolémica",
+            "causas": ["SIADH", "Hipotiroidismo", "Insuf suprarrenal"],
+            "na_urinario": ">20"
+          },
+          {
+            "nombre": "Hipervolémica",
+            "causas": ["ICC", "Cirrosis", "Síndrome nefrótico", "IRC"],
+            "na_urinario": "<20"
+          }
+        ]
+      }
+    },
+
+    "sintomas": {
+      "leves": ["Náuseas", "Confusión", "Cefalea"],
+      "severos": ["Convulsiones", "Coma", "Edema cerebral"]
+    },
+
+    "tratamiento": {
+      "aguda_sintomatica": {
+        "criterio": "<48h evolución con síntomas severos",
+        "tratamiento": "SSN 3% (hipertónico)",
+        "dosis": "100ml bolo en 10min, repetir hasta mejoría",
+        "meta": "↑Na 4-6 mEq/L en primeras 4-6h",
+        "max_24h": "↑8-10 mEq/L en 24h (prevenir mielinólisis pontina)",
+        "formula_deficit": "Na requerido = 0.6 × peso × (Na deseado - actual)"
+      },
+
+      "cronica_asintomatica": {
+        "criterio": ">48h, sin síntomas graves",
+        "meta": "↑Na lento 4-8 mEq/L por día",
+        "hipovolemia": "SSN 0.9% + corregir causa",
+        "euvolemia_siadh": "Restricción hídrica 800-1000ml/día",
+        "hipervolemia": "Restricción Na+ y agua + diuréticos"
+      },
+
+      "siadh": {
+        "criterios": [
+          "Hiponatremia hipotónica",
+          "Orina no diluida (Osm >100)",
+          "Na urinario >20",
+          "Euvolemia clínica"
+        ],
+        "tratamiento": [
+          "Restricción hídrica 800-1000ml/día",
+          "Furosemida + reposición Na oral",
+          "Urea oral si disponible",
+          "Tolvaptán (no en Cuba)"
+        ]
+      }
+    },
+
+    "precaucion_mielinolisis": {
+      "riesgo": "Corrección rápida >10-12 mEq/L en 24h",
+      "sintomas": "Debilidad, disartria, disfagia, parálisis pseudobulbar",
+      "prevencion": "Corrección lenta, especialmente si crónica"
+    }
+  },
+
+  "hipernatremia": {
+    "nombre": "Hipernatremia",
+    "categoria": "electrolitos",
+    "definicion": "Na >145 mEq/L",
+
+    "causas": {
+      "perdida_agua": ["Diabetes insípida", "Pérdidas insensibles", "Diarrea osmótica"],
+      "ganancia_sodio": ["Soluciones hipertónicas", "Hiperaldosteronismo"]
+    },
+
+    "sintomas": ["Sed", "Confusión", "Letargia", "Convulsiones", "Coma"],
+
+    "tratamiento": {
+      "calculo_deficit": {
+        "formula": "Déficit agua (L) = 0.6 × peso × [(Na actual/140) - 1]",
+        "ejemplo": "70kg con Na 160: 0.6 × 70 × (160/140 - 1) = 6L déficit"
+      },
+
+      "reposicion": {
+        "velocidad": "Descenso Na máximo 10-12 mEq/L por 24h",
+        "aguda": "Corregir 50% déficit en 12-24h",
+        "cronica": "Corregir en 48-72h",
+        
+        "liquidos": {
+          "hipovolemia": "SSN 0.9% hasta estabilidad, luego hipotónicos",
+          "normovolemia": "DW5% o SSN 0.45%",
+          "formula_velocidad": "(Na actual - 140) / 2 = mEq/L por hora (máximo)"
+        }
+      },
+
+      "diabetes_insipida": {
+        "tratamiento": "Desmopresina + reposición agua libre"
+      }
+    }
+  }
+}
