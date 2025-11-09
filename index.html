@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergencias Pro - Protocolos de Emergencias</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#dc2626">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="offline-indicator" id="offlineIndicator">
+        📱 Modo offline activo
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚨 Emergencias Pro</h1>
+            <p>Protocolos de emergencias para cuerpo de guardia</p>
+        </div>
+
+        <!-- Pantalla de inicio - Selector de módulos -->
+        <div id="homeScreen" class="home-screen">
+            <div class="module-grid">
+                <div class="module-card cardiovascular" data-module="cardiovascular">
+                    <div class="module-icon">❤️</div>
+                    <h3>Cardiovascular</h3>
+                    <p>IMA, Edema pulmonar, Crisis HTA, Shock</p>
+                </div>
+
+                <div class="module-card respiratorio" data-module="respiratorio">
+                    <div class="module-icon">🫁</div>
+                    <h3>Respiratorio</h3>
+                    <p>Crisis asmática, EPOC, Neumotórax</p>
+                </div>
+
+                <div class="module-card neurologico" data-module="neurologico">
+                    <div class="module-icon">🧠</div>
+                    <h3>Neurológico</h3>
+                    <p>ACV, Status epiléptico, Coma</p>
+                </div>
+
+                <div class="module-card metabolico" data-module="metabolico">
+                    <div class="module-icon">⚗️</div>
+                    <h3>Metabólico</h3>
+                    <p>CAD, Hipoglucemia, Crisis tiroidea</p>
+                </div>
+
+                <div class="module-card acidobase" data-module="acidobase">
+                    <div class="module-icon">🔬</div>
+                    <h3>Ácido-Base</h3>
+                    <p>Acidosis, Alcalosis, Trastornos mixtos</p>
+                </div>
+
+                <div class="module-card gastrointestinal" data-module="gastrointestinal">
+                    <div class="module-icon">🩺</div>
+                    <h3>Gastrointestinal</h3>
+                    <p>HDA, HDB, Abdomen agudo</p>
+                </div>
+
+                <div class="module-card infeccioso" data-module="infeccioso">
+                    <div class="module-icon">🦠</div>
+                    <h3>Infeccioso</h3>
+                    <p>Sepsis, Meningitis, Neumonía grave</p>
+                </div>
+
+                <div class="module-card intoxicaciones" data-module="intoxicaciones">
+                    <div class="module-icon">☠️</div>
+                    <h3>Intoxicaciones</h3>
+                    <p>Organofosforados, Paracetamol, Opioides</p>
+                </div>
+
+                <div class="module-card paro" data-module="paro">
+                    <div class="module-icon">⚡</div>
+                    <h3>Paro Cardíaco</h3>
+                    <p>ACLS, RCP, Algoritmos completos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pantalla del módulo (se llena dinámicamente) -->
+        <div id="moduleScreen" class="module-screen" style="display: none;">
+            <button class="back-button" id="backButton">← Volver</button>
+            
+            <div id="moduleContent" class="module-content">
+                <!-- Contenido dinámico -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/calculators.js"></script>
+    <script src="js/algorithms.js"></script>
+</body>
+</html>

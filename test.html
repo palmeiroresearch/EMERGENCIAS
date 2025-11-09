@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST - Emergencias Pro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        button {
+            background: #dc2626;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Prueba de Emergencias Pro</h1>
+    
+    <div class="test-card">
+        <h2>Test 1: Archivos JSON</h2>
+        <button onclick="testJSON()">Probar carga de JSON</button>
+        <div id="json-result"></div>
+    </div>
+
+    <div class="test-card">
+        <h2>Test 2: Formato de claves</h2>
+        <button onclick="testFormatKey()">Probar formateo</button>
+        <div id="format-result"></div>
+    </div>
+
+    <div class="test-card">
+        <h2>Test 3: Renderizado de medicamento</h2>
+        <button onclick="testMedRender()">Probar renderizado</button>
+        <div id="med-result"></div>
+    </div>
+
+    <script>
+        // Test de carga JSON
+        async function testJSON() {
+            const resultDiv = document.getElementById('json-result');
+            try {
+                const response = await fetch('data/cardiovascular.json');
+                const data = await response.json();
+                
+                const epa = data.edema_pulmonar_agudo;
+                resultDiv.innerHTML = `
+                    <p class="success">✅ JSON cargado correctamente</p>
+                    <p>Patología: ${epa.nombre}</p>
+                    <p>Categoría: ${epa.categoria}</p>
+                    <p>Protocolo tiene ${Object.keys(epa.protocolo_secuencial || {}).length} pasos</p>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+            }
+        }
+
+        // Test de formateo
+        function testFormatKey() {
+            const formatKey = (key) => key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            
+            const tests = [
+                'sin_uso_previo',
+                'con_uso_cronico',
+                'insuficiencia_renal',
+                'dosis_inicial'
+            ];
+            
+            let html = '<ul>';
+            tests.forEach(test => {
+                html += `<li>"${test}" → "${formatKey(test)}"</li>`;
+            });
+            html += '</ul>';
+            
+            document.getElementById('format-result').innerHTML = html;
+        }
+
+        // Test de renderizado de medicamento
+        function testMedRender() {
+            const med = {
+                medicamento: "Furosemida",
+                primera_linea: true,
+                dosis: {
+                    sin_uso_previo: "40-80 mg IV bolo",
+                    con_uso_cronico: "Dosis habitual x 2 o 2.5",
+                    insuficiencia_renal: "Hasta 200 mg IV"
+                },
+                administracion: "Bolo lento 2-3 minutos",
+                disponibilidad_cuba: "alta"
+            };
+
+            const formatKey = (key) => key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            const getDisponibilidadText = (disp) => {
+                const texts = {
+                    'alta': '✅ Disponible',
+                    'media': '🟡 Limitada',
+                    'baja': '🔴 Escasa'
+                };
+                return texts[disp] || '';
+            };
+
+            let html = `
+                <div style="background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 10px; padding: 15px;">
+                    <h4>${med.medicamento} ${med.primera_linea ? '⭐' : ''}
+                        <span style="font-size: 12px; color: #6b7280;">(${getDisponibilidadText(med.disponibilidad_cuba)})</span>
+                    </h4>
+            `;
+
+            if (typeof med.dosis === 'object') {
+                html += `<div style="font-weight: 600; color: #dc2626; margin-bottom: 8px;">`;
+                for (const [key, value] of Object.entries(med.dosis)) {
+                    html += `<strong>${formatKey(key)}:</strong> ${value}<br>`;
+                }
+                html += `</div>`;
+            }
+
+            html += `<p><strong>Administración:</strong> ${med.administracion}</p>`;
+            html += `</div>`;
+
+            document.getElementById('med-result').innerHTML = html;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "Emergencias Pro - Protocolos de Emergencias",
+  "short_name": "Emergencias",
+  "description": "Protocolos de emergencias médicas para cuerpo de guardia",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#dc2626",
+  "theme_color": "#7f1d1d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["medical", "education", "health", "emergency"],
+  "lang": "es-ES"
+}
