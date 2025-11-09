@@ -1,0 +1,453 @@
+{
+  "paro_cardiaco": {
+    "nombre": "Paro Cardiorrespiratorio - ACLS",
+    "categoria": "paro",
+    "prioridad": "maxima",
+
+    "algoritmo_universal": {
+      "paso_1": {
+        "accion": "Reconocer paro",
+        "verificar": ["No responde", "No respira o gasping", "No pulso"],
+        "tiempo_maximo": "10 segundos para verificar pulso"
+      },
+      "paso_2": {
+        "accion": "Activar código azul/emergencias",
+        "pedir": ["Desfibrilador/DEA", "Carro de paro", "Personal adicional"]
+      },
+      "paso_3": {
+        "accion": "Iniciar RCP inmediatamente",
+        "secuencia": "C-A-B (Circulación, Vía aérea, Respiración)",
+        "flujo": "clasificar_ritmo"
+      }
+    },
+
+    "rcp_alta_calidad": {
+      "compresiones": {
+        "frecuencia": "100-120 por minuto",
+        "profundidad_adulto": "5-6 cm",
+        "profundidad_nino": "5 cm (1/3 diámetro AP tórax)",
+        "profundidad_lactante": "4 cm (1/3 diámetro AP tórax)",
+        "permitir_reexpansion": "Completa entre compresiones",
+        "minimizar_interrupciones": "<10 segundos",
+        "posicion_manos": "Centro del tórax, mitad inferior del esternón",
+        "relacion_adulto": "30:2 (si 1 reanimador) o 15:2 (si 2 reanimadores profesionales)",
+        "cambiar_compresor": "Cada 2 minutos para evitar fatiga"
+      },
+      "ventilacion": {
+        "sin_via_aerea_avanzada": "2 ventilaciones cada 30 compresiones",
+        "con_via_aerea_avanzada": "1 ventilación cada 6 segundos (10/min)",
+        "duracion": "1 segundo por ventilación",
+        "volumen": "Suficiente para elevar tórax",
+        "evitar": "Hiperventilación"
+      },
+      "via_aerea_avanzada": {
+        "opciones": [
+          {
+            "dispositivo": "Tubo endotraqueal",
+            "tamano_adulto": "7-8mm mujeres, 8-9mm hombres",
+            "verificar": "Capnografía (ETCO2 35-40mmHg)",
+            "fijar": "Anotar profundidad en comisura labial"
+          },
+          {
+            "dispositivo": "Mascarilla laríngea",
+            "ventaja": "Más rápida, menor entrenamiento",
+            "limitacion": "No protege contra aspiración"
+          },
+          {
+            "dispositivo": "Bolsa-válvula-mascarilla",
+            "cuando": "Si no se logra vía aérea avanzada",
+            "tecnica": "Sellado óptimo, 2 personas si es posible"
+          }
+        ]
+      }
+    },
+
+    "ritmos_desfibrilables": {
+      "tipos": ["Fibrilación ventricular (FV)", "Taquicardia ventricular sin pulso (TV)"],
+      
+      "secuencia": {
+        "paso_1": {
+          "accion": "RCP inmediata",
+          "duracion": "Hasta que desfibrilador listo"
+        },
+        "paso_2": {
+          "accion": "Verificar ritmo",
+          "decision": "¿FV/TV?"
+        },
+        "paso_3": {
+          "accion": "Desfibrilación",
+          "energia_bifasico": "120-200J (según fabricante)",
+          "energia_monofasico": "360J",
+          "posicion_parches": [
+            "Anterolateral: Ápex + infraclavicular derecha",
+            "Anteroposterior: Precordio + infraescapular izquierda"
+          ],
+          "secuencia_shock": "1 shock → RCP inmediato 2 min"
+        },
+        "paso_4": {
+          "accion": "RCP 2 minutos",
+          "durante_rcp": ["Vía IV/IO", "Epinefrina", "Considerar vía aérea avanzada", "Capnografía"]
+        },
+        "paso_5": {
+          "accion": "Verificar ritmo",
+          "si_persiste_fv_tv": "Desfibrilar + RCP + medicamentos",
+          "si_cambio_ritmo": "Evaluar pulso"
+        }
+      },
+
+      "medicamentos": [
+        {
+          "medicamento": "Epinefrina",
+          "dosis": "1mg IV/IO cada 3-5 minutos",
+          "cuando": "Después del 2do shock y durante RCP",
+          "via": "IV o intraósea",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "Amiodarona",
+          "primera_dosis": "300mg IV/IO en bolo",
+          "segunda_dosis": "150mg IV/IO",
+          "cuando": "FV/TV refractaria (después de 3er shock)",
+          "preparacion": "Diluir en 20ml DW5%",
+          "disponibilidad_cuba": "media"
+        },
+        {
+          "medicamento": "Lidocaína",
+          "alternativa_amiodarona": "Si no hay amiodarona",
+          "primera_dosis": "1-1.5mg/kg IV/IO",
+          "segunda_dosis": "0.5-0.75mg/kg cada 5-10min",
+          "dosis_maxima": "3mg/kg",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "Magnesio",
+          "indicacion": "Torsades de pointes o hipomagnesemia conocida",
+          "dosis": "2g IV/IO en 1-2 minutos",
+          "disponibilidad_cuba": "alta"
+        }
+      ],
+
+      "causas_reversibles_5h_5t": {
+        "hipovolemia": {
+          "tratamiento": "Bolo rápido cristaloides",
+          "buscar": "Hemorragia, deshidratación"
+        },
+        "hipoxia": {
+          "tratamiento": "Ventilar, FiO2 100%",
+          "verificar": "Tubo bien colocado"
+        },
+        "hidrogeniones_acidosis": {
+          "tratamiento": "Hiperventilación, considerar bicarbonato si pH <7.1",
+          "causas": "Acidosis metabólica severa"
+        },
+        "hipo_hiperkalemia": {
+          "tratamiento": "Según nivel de K+",
+          "hipercalemia": "Calcio, bicarbonato, insulina+dextrosa",
+          "hipocalemia": "Reposición K+"
+        },
+        "hipotermia": {
+          "tratamiento": "Recalentamiento",
+          "especial": "Continuar RCP hasta temperatura >32°C"
+        },
+        "taponamiento_cardiaco": {
+          "tratamiento": "Pericardiocentesis",
+          "buscar": "Distensión yugular, hipotensión, ruidos cardíacos apagados"
+        },
+        "tension_neumotorax": {
+          "tratamiento": "Descompresión con aguja 2° EIC línea medioclavicular",
+          "buscar": "Desviación traqueal, ausencia ruidos respiratorios unilateral"
+        },
+        "trombosis_coronaria": {
+          "tratamiento": "Fibrinólisis durante RCP si alta sospecha",
+          "contexto": "Historia sugestiva de IMA"
+        },
+        "trombosis_pulmonar_tep": {
+          "tratamiento": "Fibrinólisis",
+          "dosis": "Alteplase 50mg bolo"
+        },
+        "toxicos": {
+          "tratamiento": "Antídotos específicos",
+          "ejemplos": "Opioides → naloxona, benzodiacepinas → flumazenil"
+        }
+      }
+    },
+
+    "ritmos_no_desfibrilables": {
+      "tipos": ["Asistolia", "Actividad eléctrica sin pulso (AESP)"],
+
+      "secuencia": {
+        "paso_1": {
+          "accion": "RCP alta calidad",
+          "importante": "NO desfibrilar asistolia"
+        },
+        "paso_2": {
+          "accion": "Vía IV/IO + epinefrina",
+          "epinefrina": "1mg cada 3-5 min",
+          "via_aerea": "Intubar lo antes posible"
+        },
+        "paso_3": {
+          "accion": "RCP 2 minutos continuos",
+          "durante": "Buscar y corregir causas reversibles"
+        },
+        "paso_4": {
+          "accion": "Verificar ritmo cada 2 minutos",
+          "si_organizado": "Verificar pulso <10seg",
+          "si_fv_tv": "Pasar a algoritmo desfibrilable"
+        }
+      },
+
+      "aesp_causas_frecuentes": {
+        "descripcion": "Ritmo organizado en monitor pero sin pulso palpable",
+        "causas_mas_comunes": [
+          "Hipovolemia severa",
+          "Hipoxia",
+          "Taponamiento cardíaco",
+          "Neumotórax a tensión",
+          "TEP masivo",
+          "IMA extenso",
+          "Hipercalemia"
+        ],
+        "enfoque": "Buscar agresivamente causa reversible"
+      },
+
+      "medicamentos": [
+        {
+          "medicamento": "Epinefrina",
+          "dosis": "1mg IV/IO cada 3-5 minutos",
+          "cuando": "Tan pronto como posible y continuar",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "Atropina",
+          "indicacion": "YA NO se recomienda en asistolia/AESP",
+          "razon": "Sin evidencia de beneficio"
+        }
+      ]
+    },
+
+    "manejo_post_rcr": {
+      "nombre": "Síndrome post-paro cardíaco",
+      
+      "objetivos_inmediatos": {
+        "optimizar_cardiopulmonar": {
+          "pa_objetivo": "PAS >90mmHg, PAM >65mmHg",
+          "sato2": "94-98% (evitar hiperoxia)",
+          "pco2": "35-45mmHg (normocapnia)",
+          "tratamiento": "Vasopresores si necesario, ajustar ventilación"
+        },
+        "control_temperatura": {
+          "objetivo": "32-36°C por 24 horas",
+          "metodo": "Hipotermia terapéutica o prevención fiebre",
+          "evitar": "Fiebre en primeras 72 horas"
+        },
+        "considerar_causa": {
+          "ecg_12_derivaciones": "Buscar SCA",
+          "imagen": "TC cerebral, Rx tórax",
+          "laboratorios": "Troponina, lactato, gasometría, electrolitos"
+        },
+        "angiografia_coronaria": {
+          "indicacion": "Sospecha SCA, especialmente si ST elevado post-RCCP",
+          "timing": "Lo antes posible"
+        }
+      },
+
+      "sedacion_analgesia": {
+        "objetivos": "Evitar despertar agitado, asegurar sincronía con ventilador",
+        "opciones": [
+          {
+            "medicamento": "Fentanilo",
+            "dosis": "1-2 mcg/kg bolo, luego infusión 0.5-2 mcg/kg/h",
+            "disponibilidad_cuba": "media"
+          },
+          {
+            "medicamento": "Morfina",
+            "dosis": "0.1mg/kg bolo, infusión 2-10mg/h",
+            "disponibilidad_cuba": "alta"
+          },
+          {
+            "medicamento": "Midazolam",
+            "dosis": "0.05-0.1mg/kg bolo, infusión 1-5mg/h",
+            "disponibilidad_cuba": "alta"
+          },
+          {
+            "medicamento": "Propofol",
+            "dosis": "Infusión 20-50 mcg/kg/min",
+            "disponibilidad_cuba": "baja"
+          }
+        ]
+      },
+
+      "pronostico": {
+        "buenos_signos": [
+          "Recuperación neurológica precoz",
+          "Tiempo paro corto (<5min)",
+          "RCP presenciado",
+          "Ritmo inicial FV/TV",
+          "RCCP rápido"
+        ],
+        "malos_signos": [
+          "Paro prolongado sin RCP",
+          "Asistolia inicial",
+          "No respuesta pupilar a las 72h",
+          "Ausencia reflejo corneal a las 72h"
+        ],
+        "evaluacion": "No tomar decisiones pronósticas antes de 72h si hipotermia"
+      }
+    },
+
+    "situaciones_especiales": {
+      "embarazo": {
+        "modificaciones": [
+          "Desplazar útero lateralmente (hacia izquierda)",
+          "Considerar cesárea perimortem si >20 semanas y no RCCP en 4-5min",
+          "Energía desfibrilación sin cambios",
+          "Medicamentos sin cambios"
+        ]
+      },
+      "ahogamiento": {
+        "modificaciones": [
+          "5 ventilaciones iniciales antes de compresiones",
+          "Secuencia A-B-C en lugar de C-A-B",
+          "Alta prioridad en oxigenación"
+        ]
+      },
+      "electrocucion": {
+        "seguridad": "Asegurar que no hay contacto con fuente eléctrica",
+        "buscar": "Quemaduras, arritmias, traumatismos por caída"
+      },
+      "hipotermia": {
+        "modificaciones": [
+          "Continuar RCP hasta temperatura >32°C",
+          "Duplicar intervalos medicamentos si T <30°C",
+          "Desfibrilación puede no ser efectiva hasta recalentamiento"
+        ]
+      },
+      "sobredosis_opioides": {
+        "modificaciones": [
+          "Naloxona 0.4-2mg IV/IM/IN cada 2-3min",
+          "Ventilación prioritaria",
+          "Monitoreo prolongado (opioides acción larga)"
+        ],
+        "disponibilidad_naloxona_cuba": "media"
+      }
+    },
+
+    "organizacion_equipo": {
+      "lider": {
+        "rol": "Coordinar, tomar decisiones, monitorear calidad RCP",
+        "no_hace": "RCP (delega para tener visión global)"
+      },
+      "compresor_1_2": {
+        "rol": "RCP alta calidad",
+        "rotacion": "Cada 2 minutos"
+      },
+      "via_aerea": {
+        "rol": "Ventilar, intubar, monitorear ETCO2"
+      },
+      "acceso_vascular": {
+        "rol": "Vía IV/IO, administrar medicamentos"
+      },
+      "monitor_desfibrilador": {
+        "rol": "Analizar ritmo, desfibrilar, documentar"
+      },
+      "timer": {
+        "rol": "Cronometrar 2min, avisar cambios de compresor, dosis medicamentos"
+      }
+    },
+
+    "errores_frecuentes": [
+      "Compresiones superficiales o lentas",
+      "No permitir reexpansión completa del tórax",
+      "Interrupciones prolongadas de RCP",
+      "Hiperventilación",
+      "Retraso en desfibrilación",
+      "No buscar causas reversibles",
+      "Detener RCP para verificar pulso frecuentemente"
+    ],
+
+    "criterios_terminar_rcp": [
+      "RCCP exitoso (pulso + presión arterial)",
+      "Indicación médica de no continuar",
+      "Evidencia muerte irreversible (rigor mortis, livideces, etc)",
+      "Seguridad del equipo comprometida",
+      "Asistolia >20min a pesar de ACLS completo (controversia)"
+    ]
+  },
+
+  "bradicardia_sintomatica": {
+    "nombre": "Bradicardia con Inestabilidad Hemodinámica",
+    "categoria": "paro",
+
+    "criterios_inestabilidad": [
+      "Hipotensión (PAS <90mmHg)",
+      "Alteración estado mental",
+      "Dolor torácico isquémico",
+      "Disnea / insuficiencia cardíaca aguda",
+      "Signos shock"
+    ],
+
+    "tratamiento_inmediato": [
+      {
+        "medicamento": "Atropina",
+        "dosis": "0.5mg IV cada 3-5min",
+        "dosis_maxima": "3mg total",
+        "disponibilidad_cuba": "alta",
+        "nota": "Puede NO funcionar en bloqueos de alto grado"
+      },
+      {
+        "medicamento": "Dopamina",
+        "si_no_responde_atropina": true,
+        "dosis": "2-10 mcg/kg/min",
+        "preparacion": "400mg en 250ml DW5%",
+        "disponibilidad_cuba": "alta"
+      },
+      {
+        "medicamento": "Epinefrina",
+        "alternativa": true,
+        "dosis": "2-10 mcg/min en infusión",
+        "preparacion": "1mg en 250ml DW5% (4mcg/ml)",
+        "disponibilidad_cuba": "alta"
+      }
+    ],
+
+    "marcapaso_transcutaneo": {
+      "cuando": "Si no responde a medicamentos o bloqueo alto grado",
+      "frecuencia": "60-80 lpm",
+      "corriente": "Iniciar bajo e incrementar hasta captura",
+      "sedacion": "Doloroso - sedar si paciente consciente",
+      "limitacion_cuba": "Disponibilidad muy limitada"
+    },
+
+    "evitar": [
+      "Atropina en bloqueo AV de 2do/3er grado con QRS ancho",
+      "Atropina en trasplantados cardíacos (no funciona)"
+    ]
+  },
+
+  "taquicardia_inestable": {
+    "nombre": "Taquicardia con Inestabilidad Hemodinámica",
+    "categoria": "paro",
+
+    "cardioversion_sincronizada": {
+      "indicacion": "Taquicardia + inestabilidad hemodinámica",
+      "energia": {
+        "qrs_estrecho_regular": "50-100J",
+        "qrs_ancho_regular": "100J",
+        "fibrilacion_auricular": "120-200J",
+        "flutter_auricular": "50-100J"
+      },
+      "sedacion": "Obligatoria si paciente consciente",
+      "sincronizacion": "Verificar modo sincronizado activado"
+    },
+
+    "si_cardioversion_falla": [
+      {
+        "medicamento": "Amiodarona",
+        "dosis": "150mg IV en 10min",
+        "repetir": "Puede repetir 150mg",
+        "mantenimiento": "1mg/min x 6h, luego 0.5mg/min",
+        "disponibilidad_cuba": "media"
+      }
+    ]
+  }
+}

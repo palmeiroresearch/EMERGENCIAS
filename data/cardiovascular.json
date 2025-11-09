@@ -1,0 +1,693 @@
+{
+  "edema_pulmonar_agudo": {
+    "nombre": "Edema Pulmonar Agudo Cardiogénico",
+    "categoria": "cardiovascular",
+    "prioridad": "critica",
+    
+    "evaluacion_inicial": {
+      "abc": {
+        "via_aerea": "Permeabilidad, considerar IOT si Glasgow <8",
+        "respiracion": "FR, patrón, SatO2, estertores, uso músculos accesorios",
+        "circulacion": "PA, FC, pulsos, llenado capilar, perfusión"
+      },
+      "signos_vitales_criticos": ["PA", "FC", "FR", "SatO2"],
+      "labs_urgentes": ["Gasometría arterial", "Troponina", "BUN/Creatinina", "Electrolitos", "Hemograma"],
+      "imagen": "Rx tórax (cardiomegalia, infiltrados, líneas B Kerley)"
+    },
+
+    "estratificacion": [
+      {
+        "nombre": "EPA hipertensivo",
+        "criterio": "PAS ≥140 mmHg",
+        "prioridad": "Reducción agresiva PA + precarga",
+        "flujo": "grupo_hipertensivo"
+      },
+      {
+        "nombre": "EPA normotensivo",
+        "criterio": "PAS 100-140 mmHg",
+        "prioridad": "Diuréticos + vasodilatadores con precaución",
+        "flujo": "grupo_normotensivo"
+      },
+      {
+        "nombre": "EPA con shock cardiogénico",
+        "criterio": "PAS <100 mmHg",
+        "prioridad": "Soporte inotrópico + manejo precarga",
+        "flujo": "grupo_shock"
+      }
+    ],
+
+    "protocolo_secuencial": {
+      "paso_1_oxigenacion": {
+        "nombre": "Oxigenación (SIEMPRE PRIMERO)",
+        "descripcion": "Oxígeno es el mejor vasodilatador pulmonar",
+        "opciones": [
+          {
+            "metodo": "Cánula nasal",
+            "indicacion": "SatO2 85-90%, paciente estable",
+            "flujo": "2-6 L/min",
+            "objetivo": "SatO2 >92%"
+          },
+          {
+            "metodo": "Mascarilla reservorio",
+            "indicacion": "SatO2 <85%, disnea severa",
+            "flujo": "10-15 L/min",
+            "objetivo": "SatO2 >92%"
+          },
+          {
+            "metodo": "VMNI (BiPAP/CPAP)",
+            "indicacion": "SatO2 <85% a pesar O2, trabajo respiratorio severo",
+            "parametros": {
+              "cpap": "5-10 cmH2O",
+              "bipap": "IPAP 10-15, EPAP 5-8"
+            },
+            "contraindicaciones": ["Inestabilidad hemodinámica severa", "Glasgow <8", "Vómitos incoercibles"]
+          },
+          {
+            "metodo": "Intubación orotraqueal",
+            "indicacion": "Fallo VMNI, apnea, Glasgow <8, PCO2 >50 con acidosis"
+          }
+        ]
+      },
+
+      "paso_2_reduccion_precarga": {
+        "nombre": "Reducción de precarga",
+        "diureticos": [
+          {
+            "medicamento": "Furosemida",
+            "primera_linea": true,
+            "dosis": {
+              "sin_uso_previo": "40-80 mg IV bolo",
+              "con_uso_cronico": "Dosis habitual x 2 o 2.5",
+              "insuficiencia_renal": "Hasta 200 mg IV"
+            },
+            "administracion": "Bolo lento 2-3 minutos",
+            "inicio_accion": "5-10 minutos",
+            "reevaluacion": "30-60 minutos",
+            "dosis_subsecuente": "Duplicar si no respuesta",
+            "infusion_continua": {
+              "indicacion": "Si bolo inicial >80mg o mala respuesta",
+              "dosis": "5-10 mg/hora",
+              "preparacion": "200mg en 100ml SSN (2mg/ml)",
+              "velocidad": "2.5-5 ml/hora"
+            },
+            "objetivo": "Diuresis >0.5 ml/kg/hora",
+            "presentaciones": ["Ámpulas 20mg/2ml", "Tabletas 40mg"],
+            "disponibilidad_cuba": "alta"
+          },
+          {
+            "medicamento": "Bumetanida",
+            "primera_linea": false,
+            "equivalencia": "1mg bumetanida = 40mg furosemida",
+            "dosis": "0.5-2 mg IV",
+            "ventaja": "Mejor absorción en anasarca",
+            "disponibilidad_cuba": "baja"
+          }
+        ],
+        
+        "nitratos": [
+          {
+            "medicamento": "Nitroglicerina SL",
+            "dosis": "0.4-0.6 mg (1-2 tabletas) cada 5min",
+            "maximo": "3 dosis",
+            "precaucion": "Controlar PA cada dosis",
+            "suspender_si": "PAS <100 mmHg o descenso >30mmHg",
+            "disponibilidad_cuba": "alta"
+          },
+          {
+            "medicamento": "Nitroglicerina IV",
+            "indicacion": "EPA hipertensivo (PAS >140)",
+            "dosis_inicial": "10-20 mcg/min",
+            "titulacion": "Aumentar 5-10 mcg/min cada 5-10min",
+            "dosis_maxima": "200 mcg/min",
+            "preparacion": {
+              "ampula": "50mg/10ml (5mg/ml)",
+              "dilucion": "50mg en 240ml DW5% = 200mcg/ml",
+              "ejemplo_velocidad": {
+                "20_mcg_min": "6 ml/hora",
+                "50_mcg_min": "15 ml/hora"
+              }
+            },
+            "objetivo": "Reducir PAS 10-15% en primeros 15min",
+            "contraindicaciones": ["PAS <100 mmHg", "IMA inferior con VD", "Sildenafil últimas 24h"],
+            "disponibilidad_cuba": "media"
+          },
+          {
+            "medicamento": "Isosorbide dinitrato",
+            "cuando": "No hay nitroglicerina IV",
+            "dosis": "5-10mg SL o 1-2mg IV lento",
+            "duracion": "Más prolongada que NTG",
+            "disponibilidad_cuba": "alta"
+          }
+        ]
+      },
+
+      "paso_3_segun_presion": {
+        "grupo_hipertensivo": {
+          "pas": "≥140 mmHg",
+          "objetivo": "Reducción agresiva PA + precarga",
+          "tratamiento_base": ["NTG IV titulada", "Furosemida IV"],
+          "antihipertensivos_adicionales": [
+            {
+              "medicamento": "Captopril",
+              "dosis": "6.25-25 mg SL/VO",
+              "inicio": "15-30 minutos",
+              "precaucion": "Evitar en estenosis aórtica",
+              "disponibilidad_cuba": "alta"
+            },
+            {
+              "medicamento": "Enalapril",
+              "dosis": "1.25-5 mg IV lento cada 6h",
+              "alternativa": "Si no hay captopril",
+              "disponibilidad_cuba": "alta"
+            },
+            {
+              "medicamento": "Labetalol",
+              "dosis": "20mg IV inicial, luego 40-80mg cada 10min",
+              "max": "300mg total",
+              "contraindicacion": "Asma, EPOC, IC descompensada",
+              "disponibilidad_cuba": "baja"
+            },
+            {
+              "medicamento": "Hidralazina",
+              "dosis": "10-20mg IV lento",
+              "efecto": "Vasodilatador arteriolar",
+              "precaucion": "Puede causar taquicardia refleja",
+              "disponibilidad_cuba": "alta"
+            }
+          ]
+        },
+
+        "grupo_normotensivo": {
+          "pas": "100-140 mmHg",
+          "objetivo": "Balance precarga sin caer en hipotensión",
+          "tratamiento": ["Furosemida dosis estándar", "NTG SL o IV dosis bajas", "Monitoreo PA continuo"]
+        },
+
+        "grupo_shock": {
+          "pas": "<100 mmHg",
+          "diagnostico": "EPA + SHOCK CARDIOGÉNICO",
+          "causas_buscar": ["IMA extenso", "CIV", "Insuficiencia mitral aguda", "Miocarditis fulminante", "TEP masivo"],
+          
+          "precauciones": {
+            "diureticos": "Dosis bajas o diferir",
+            "vasodilatadores": "EVITAR - empeorarán hipotensión"
+          },
+
+          "inotropicos": [
+            {
+              "medicamento": "Dobutamina",
+              "indicacion": "Primera línea si PAS 70-100",
+              "dosis_inicial": "2.5 mcg/kg/min",
+              "titulacion": "Aumentar 2.5 mcg cada 15min",
+              "dosis_usual": "5-10 mcg/kg/min",
+              "dosis_maxima": "20 mcg/kg/min",
+              "preparacion_70kg": {
+                "ampula": "250mg/5ml",
+                "dilucion": "250mg en 245ml DW5% = 1000mcg/ml",
+                "velocidad_5mcg": "21 ml/hora",
+                "velocidad_10mcg": "42 ml/hora"
+              },
+              "efectos": "↑contractilidad, ↓RVS, puede ↑FC",
+              "vigilar": "Arritmias, taquicardia",
+              "disponibilidad_cuba": "media"
+            },
+            {
+              "medicamento": "Dopamina",
+              "indicacion": "Si PAS <70 (shock profundo)",
+              "dosis_por_efecto": {
+                "2-5_mcg": "Renal (controversia)",
+                "5-10_mcg": "Inotrópico",
+                "10-20_mcg": "Vasopresor"
+              },
+              "preparacion_70kg": {
+                "ampula": "200mg/5ml",
+                "dilucion": "400mg en 250ml DW5% = 1600mcg/ml",
+                "velocidad_10mcg": "26 ml/hora"
+              },
+              "ventaja": "Soporte PA + inotropismo",
+              "desventaja": "Más arritmogénica",
+              "disponibilidad_cuba": "alta"
+            },
+            {
+              "medicamento": "Norepinefrina",
+              "indicacion": "Shock refractario + hipotensión severa",
+              "dosis": "0.1-0.5 mcg/kg/min",
+              "preparacion": "4mg en 250ml DW5% = 16mcg/ml",
+              "precaucion": "↑poscarga puede empeorar IC",
+              "disponibilidad_cuba": "media"
+            },
+            {
+              "medicamento": "Epinefrina",
+              "indicacion": "Shock profundo refractario",
+              "dosis": "0.05-0.5 mcg/kg/min",
+              "disponibilidad_cuba": "alta"
+            }
+          ]
+        }
+      }
+    },
+
+    "hidratacion": {
+      "regla": "RESTRICCIÓN HÍDRICA estricta",
+      "volumen_permitido": "500-800 ml/día (solo para medicamentos)",
+      "evitar": "SSN 0.9% (sobrecarga sodio)",
+      "usar": "DW5% en cantidad mínima",
+      "objetivo_balance": "Balance negativo 1-2 litros primeras 24h",
+      "peso_objetivo": "Reducción 0.5-1 kg/día"
+    },
+
+    "gasometria": {
+      "patron_esperado": {
+        "ph": "Variable",
+        "pco2": "Bajo por hiperventilación",
+        "po2": "Bajo (<60mmHg)",
+        "hco3": "Normal o bajo",
+        "patron": "Insuf respiratoria hipoxémica ± alcalosis respiratoria"
+      },
+      "si_acidosis_metabolica": {
+        "causas": ["Shock con hipoperfusión", "IR", "Acidosis láctica"],
+        "tratamiento_prioridad": "Mejorar perfusión",
+        "bicarbonato": {
+          "indicacion": "Solo si pH <7.1 Y K+ normal",
+          "dosis": "1 mEq/kg en 30-60min",
+          "formula": "mEq NaHCO3 = 0.3 x peso x (HCO3 deseado - actual)",
+          "precaucion": "Sobrecarga Na+ y volumen, ↑PCO2"
+        }
+      }
+    },
+
+    "monitoreo": {
+      "signos_vitales": "cada 15min primera hora, luego cada 30min",
+      "sato2": "Continuo (pulsioxímetro)",
+      "diuresis": "Sonda vesical, medir cada hora",
+      "balance_hidrico": "Cada 6 horas",
+      "gasometria": "Basal, 1-2h post-inicio, si cambio clínico",
+      "rx_torax": "24h o si deterioro",
+      "electrolitos": "Cada 12-24h"
+    },
+
+    "criterios_mejoria": [
+      "↓Disnea y FR",
+      "↑SatO2 >92%",
+      "Diuresis efectiva >100ml/h",
+      "Desaparición estertores",
+      "PA controlada",
+      "Gasometría mejorada"
+    ],
+
+    "criterios_deterioro": {
+      "clinicos": ["Disnea progresiva", "Alteración conciencia", "Cianosis central", "Uso músculos accesorios severo"],
+      "gasometricos": ["PO2 <50mmHg con O2", "PCO2 >50mmHg en aumento", "pH <7.25"],
+      "conducta": "Escalar soporte ventilatorio (VMNI → IOT)"
+    }
+  },
+
+  "infarto_agudo_miocardio": {
+    "nombre": "Infarto Agudo de Miocardio",
+    "categoria": "cardiovascular",
+    "prioridad": "critica",
+
+    "clasificacion": [
+      {
+        "tipo": "IMA con elevación del ST (IMACEST)",
+        "criterio": "Elevación ST ≥1mm en 2 derivadas contiguas",
+        "urgencia": "Reperfusión urgente <12h",
+        "flujo": "imacest"
+      },
+      {
+        "tipo": "IMA sin elevación del ST (IMASEST)",
+        "criterio": "Troponina elevada SIN elevación ST",
+        "urgencia": "Estratificación de riesgo",
+        "flujo": "imasest"
+      }
+    ],
+
+    "imacest": {
+      "criterios_inclusion": [
+        "Dolor torácico característico",
+        "Elevación ST ≥1mm en 2 derivadas contiguas",
+        "Tiempo evolución <12h"
+      ],
+
+      "evaluacion_inmediata": {
+        "ecg": "Obligatorio en primeros 10 minutos",
+        "labs": ["Troponina", "CK-MB", "Hemograma", "Creatinina", "Glicemia", "Electrolitos"],
+        "signos_vitales": "PA ambos brazos, FC, FR, SatO2"
+      },
+
+      "contraindicaciones_fibrinolisis": [
+        "ACV previo",
+        "Cirugía reciente (<3 semanas)",
+        "Sangrado activo",
+        "HTA no controlada (>180/110)",
+        "Embarazo",
+        "Traumatismo reciente",
+        "Diátesis hemorrágica conocida"
+      ],
+
+      "tratamiento_inmediato": [
+        {
+          "medicamento": "Oxígeno",
+          "indicacion": "Solo si SatO2 <90%",
+          "dosis": "2-4 L/min por cánula nasal",
+          "objetivo": "SatO2 >90%"
+        },
+        {
+          "medicamento": "Morfina",
+          "indicacion": "Dolor no controlado con nitratos",
+          "dosis": "2-4 mg IV cada 5-15min",
+          "maximo": "15mg total",
+          "precaucion": "Vigilar depresión respiratoria, hipotensión",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "Nitroglicerina SL",
+          "dosis": "0.4mg cada 5min",
+          "maximo": "3 dosis",
+          "contraindicacion": "IMA inferior con afección VD, PAS <90",
+          "disponibilidad_cuba": "alta"
+        }
+      ],
+
+      "antiagregacion_anticoagulacion": [
+        {
+          "medicamento": "ASA (Aspirina)",
+          "dosis": "300mg VO masticado",
+          "timing": "Inmediato",
+          "mantenimiento": "100mg/día",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "Clopidogrel",
+          "dosis_carga": "300mg VO",
+          "alternativa_edad_menor_75": "600mg si <75 años",
+          "timing": "Inmediato",
+          "mantenimiento": "75mg/día",
+          "disponibilidad_cuba": "media"
+        },
+        {
+          "medicamento": "Heparina no fraccionada",
+          "dosis_bolo": "60 UI/kg (max 4000 UI) IV",
+          "infusion": "12 UI/kg/h (max 1000 UI/h)",
+          "objetivo_ttpa": "1.5-2 veces control",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "Enoxaparina",
+          "alternativa": "Si no HNF disponible",
+          "dosis_menor_75": "30mg IV bolo + 1mg/kg SC cada 12h",
+          "dosis_mayor_75": "0.75mg/kg SC cada 12h sin bolo",
+          "disponibilidad_cuba": "baja"
+        }
+      ],
+
+      "estrategia_reperfusion": {
+        "decision": "¿Tiempo <12h desde inicio síntomas?",
+        
+        "icp_primaria": {
+          "ideal": "Primera opción si disponible",
+          "ventana": "Puerta-balón <90min",
+          "ventaja": "Mayor éxito, menos hemorragia",
+          "disponibilidad_cuba": "Muy limitada - solo centros terciarios"
+        },
+
+        "fibrinolisis": {
+          "cuando": "No ICP disponible o tiempo puerta-balón >90min",
+          "ventana": "Idealmente <3h, aceptable hasta 12h",
+          
+          "opciones": [
+            {
+              "medicamento": "Estreptoquinasa",
+              "dosis": "1.5 millones UI en 100ml SSN en 30-60min",
+              "ventaja": "Más disponible en Cuba",
+              "desventaja": "Reacciones alérgicas, menos efectiva",
+              "disponibilidad_cuba": "alta"
+            },
+            {
+              "medicamento": "Tenecteplase (TNK)",
+              "dosis_por_peso": {
+                "menos_60kg": "30mg",
+                "60-69kg": "35mg",
+                "70-79kg": "40mg",
+                "80-89kg": "45mg",
+                "mas_90kg": "50mg"
+              },
+              "administracion": "Bolo IV único en 5 segundos",
+              "ventaja": "Más efectivo, bolo único",
+              "disponibilidad_cuba": "baja"
+            },
+            {
+              "medicamento": "Alteplase (rt-PA)",
+              "dosis": "15mg bolo + 0.75mg/kg en 30min + 0.5mg/kg en 60min",
+              "max": "100mg total",
+              "disponibilidad_cuba": "muy baja"
+            }
+          ],
+
+          "criterios_reperfusion": [
+            "Disminución dolor",
+            "Descenso ST >50% a los 60-90min",
+            "Arritmias de reperfusión (TV, bradicardia)"
+          ]
+        }
+      },
+
+      "tratamiento_adjunto": [
+        {
+          "medicamento": "Betabloqueador",
+          "cuando": "Después de estabilizar",
+          "opciones": [
+            {
+              "nombre": "Atenolol",
+              "dosis": "25-50mg VO cada 12h",
+              "disponibilidad_cuba": "alta"
+            },
+            {
+              "nombre": "Metoprolol",
+              "dosis_iv": "5mg IV cada 5min x 3 dosis",
+              "dosis_vo": "25-50mg VO cada 12h",
+              "disponibilidad_cuba": "media"
+            }
+          ],
+          "contraindicacion": ["IC descompensada", "Bloqueo AV", "Bradicardia <60", "PAS <100"]
+        },
+        {
+          "medicamento": "IECA",
+          "cuando": "Primeras 24h si hemodinámicamente estable",
+          "opciones": [
+            {
+              "nombre": "Captopril",
+              "dosis_inicial": "6.25mg",
+              "titulacion": "Hasta 50mg cada 8h",
+              "disponibilidad_cuba": "alta"
+            },
+            {
+              "nombre": "Enalapril",
+              "dosis": "2.5-5mg cada 12h",
+              "disponibilidad_cuba": "alta"
+            }
+          ]
+        },
+        {
+          "medicamento": "Estatina",
+          "cuando": "Inicio precoz",
+          "opciones": [
+            {
+              "nombre": "Atorvastatina",
+              "dosis": "40-80mg/día",
+              "disponibilidad_cuba": "media"
+            },
+            {
+              "nombre": "Simvastatina",
+              "dosis": "40mg/día",
+              "disponibilidad_cuba": "alta"
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  "crisis_hipertensiva": {
+    "nombre": "Crisis Hipertensiva",
+    "categoria": "cardiovascular",
+
+    "clasificacion": [
+      {
+        "tipo": "Emergencia hipertensiva",
+        "criterio": "PA elevada + daño órgano diana",
+        "ejemplos": ["Encefalopatía", "ACV", "EPA", "SCA", "Disección aórtica"],
+        "meta": "Reducir PA 10-20% primera hora",
+        "via": "IV"
+      },
+      {
+        "tipo": "Urgencia hipertensiva",
+        "criterio": "PA elevada SIN daño órgano diana",
+        "meta": "Reducir PA gradualmente en 24-48h",
+        "via": "VO"
+      }
+    ],
+
+    "tratamiento_emergencia": [
+      {
+        "medicamento": "Labetalol",
+        "dosis": "20mg IV inicial, luego 40-80mg cada 10min",
+        "max": "300mg",
+        "infusion": "0.5-2 mg/min",
+        "disponibilidad_cuba": "baja"
+      },
+      {
+        "medicamento": "Nitroprusiato",
+        "dosis": "0.25-10 mcg/kg/min",
+        "ventaja": "Acción inmediata",
+        "precaucion": "Intoxicación por cianuro >72h",
+        "disponibilidad_cuba": "baja"
+      },
+      {
+        "medicamento": "Nitroglicerina IV",
+        "dosis": "5-100 mcg/min",
+        "indicacion": "Si SCA o EPA asociado",
+        "disponibilidad_cuba": "media"
+      },
+      {
+        "medicamento": "Hidralazina",
+        "dosis": "10-20mg IV cada 4-6h",
+        "ventaja": "Disponible en Cuba",
+        "desventaja": "Inicio acción más lento",
+        "disponibilidad_cuba": "alta"
+      },
+      {
+        "medicamento": "Enalaprilato",
+        "dosis": "1.25-5mg IV cada 6h",
+        "precaucion": "Evitar en embarazo",
+        "disponibilidad_cuba": "alta"
+      }
+    ],
+
+    "tratamiento_urgencia": [
+      {
+        "medicamento": "Captopril",
+        "dosis": "12.5-25mg SL/VO",
+        "repetir": "Cada 30-60min según necesidad",
+        "disponibilidad_cuba": "alta"
+      },
+      {
+        "medicamento": "Nifedipino",
+        "dosis": "10mg VO (NO sublingual)",
+        "precaucion": "Caída brusca PA",
+        "disponibilidad_cuba": "alta"
+      },
+      {
+        "medicamento": "Clonidina",
+        "dosis": "0.1-0.2mg VO, repetir cada hora",
+        "max": "0.6mg",
+        "disponibilidad_cuba": "media"
+      }
+    ]
+  },
+
+  "shock": {
+    "nombre": "Shock - Clasificación y Manejo",
+    "categoria": "cardiovascular",
+
+    "tipos": [
+      {
+        "tipo": "Shock hipovolémico",
+        "causas": ["Hemorragia", "Deshidratación", "Quemaduras"],
+        "fisiopatologia": "↓Precarga",
+        "tratamiento": "Reposición volumen agresiva",
+        "flujo": "shock_hipovolemico"
+      },
+      {
+        "tipo": "Shock cardiogénico",
+        "causas": ["IMA", "Miocarditis", "Arritmias"],
+        "fisiopatologia": "↓Contractilidad",
+        "tratamiento": "Inotrópicos + optimizar precarga",
+        "flujo": "shock_cardiogenico"
+      },
+      {
+        "tipo": "Shock séptico",
+        "causas": ["Infección grave"],
+        "fisiopatologia": "↓RVS + disfunción miocárdica",
+        "tratamiento": "Antibióticos + volumen + vasopresores",
+        "flujo": "shock_septico"
+      },
+      {
+        "tipo": "Shock anafiláctico",
+        "causas": ["Reacción alérgica severa"],
+        "fisiopatologia": "↓RVS + permeabilidad capilar",
+        "tratamiento": "Epinefrina + volumen + antihistamínicos",
+        "flujo": "shock_anafilactico"
+      },
+      {
+        "tipo": "Shock neurogénico",
+        "causas": ["Lesión medular"],
+        "fisiopatologia": "↓RVS por pérdida tono simpático",
+        "tratamiento": "Volumen + vasopresores",
+        "flujo": "shock_neurogenico"
+      }
+    ],
+
+    "shock_hipovolemico": {
+      "reposicion_inicial": {
+        "cristaloides": [
+          {
+            "solucion": "SSN 0.9%",
+            "bolo": "20ml/kg en 15-30min (adultos 1-2L)",
+            "reevaluar": "Después de cada bolo",
+            "disponibilidad_cuba": "alta"
+          },
+          {
+            "solucion": "Lactato Ringer",
+            "ventaja": "Más fisiológico",
+            "disponibilidad_cuba": "media"
+          }
+        ],
+        "coloides": [
+          {
+            "solucion": "Albúmina 5%",
+            "cuando": "Si no responde a cristaloides",
+            "dosis": "500ml en 30min",
+            "disponibilidad_cuba": "baja"
+          }
+        ]
+      },
+      "transfusion": {
+        "cuando": "Hemorragia activa, Hb <7g/dL (o <9 si cardiopatía)",
+        "meta_hb": "7-9 g/dL",
+        "productos": ["GRE", "Plasma", "Plaquetas según necesidad"]
+      }
+    },
+
+    "shock_anafilactico": {
+      "tratamiento_inmediato": [
+        {
+          "medicamento": "Epinefrina",
+          "dosis": "0.3-0.5mg IM (0.01mg/kg)",
+          "sitio": "Vasto externo del muslo",
+          "repetir": "Cada 5-15min si persiste",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "SSN 0.9%",
+          "bolo": "20ml/kg rápido",
+          "objetivo": "Reposición volumen intravascular"
+        },
+        {
+          "medicamento": "Difenhidramina",
+          "dosis": "50mg IV/IM",
+          "disponibilidad_cuba": "alta"
+        },
+        {
+          "medicamento": "Hidrocortisona",
+          "dosis": "100-200mg IV",
+          "disponibilidad_cuba": "alta"
+        }
+      ],
+      "si_no_responde": {
+        "epinefrina_infusion": "0.1-1 mcg/min IV",
+        "vasopresores_adicionales": "Considerar dopamina o norepinefrina"
+      }
+    }
+  }
+}

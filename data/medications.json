@@ -1,0 +1,243 @@
+{
+  "adrenalina": {
+    "nombre": "Adrenalina (Epinefrina)",
+    "indicaciones": ["Paro cardíaco", "Anafilaxia", "Shock"],
+    "dosis_paro": "1mg IV/IO cada 3-5min",
+    "dosis_anafilaxia": "0.3-0.5mg IM (0.01mg/kg)",
+    "dosis_infusion": "0.05-0.5 mcg/kg/min",
+    "preparacion_infusion": "1mg en 250ml DW5% = 4mcg/ml",
+    "presentaciones": ["Ámpulas 1mg/1ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "amiodarona": {
+    "nombre": "Amiodarona",
+    "indicaciones": ["FV/TV refractaria", "Taquiarritmias"],
+    "dosis_paro": "300mg IV bolo, luego 150mg",
+    "dosis_infusion": "1mg/min x 6h, luego 0.5mg/min",
+    "presentaciones": ["Ámpulas 150mg/3ml"],
+    "disponibilidad_cuba": "media"
+  },
+  "atropina": {
+    "nombre": "Atropina",
+    "indicaciones": ["Bradicardia sintomática", "Intoxicación organofosforados"],
+    "dosis_bradicardia": "0.5mg IV cada 3-5min, max 3mg",
+    "dosis_organofosforados": "2-5mg IV cada 5-10min hasta atropinización",
+    "presentaciones": ["Ámpulas 1mg/1ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "bicarbonato_sodio": {
+    "nombre": "Bicarbonato de Sodio",
+    "indicaciones": ["Acidosis metabólica pH <7.1", "Hipercalemia", "Intoxicación ADT"],
+    "dosis_acidosis": "1 mEq/kg IV lento",
+    "formula": "mEq = 0.3 × peso × (HCO3 deseado - actual)",
+    "dosis_hipercalemia": "50 mEq IV en 5min",
+    "presentaciones": ["Ámpulas 8.4% (1mEq/ml)"],
+    "disponibilidad_cuba": "alta",
+    "precaucion": "Sobrecarga Na+, ↑PCO2, alcalosis paradójica"
+  },
+  "dobutamina": {
+    "nombre": "Dobutamina",
+    "indicaciones": ["Shock cardiogénico", "IC descompensada"],
+    "dosis": "2.5-20 mcg/kg/min",
+    "preparacion": "250mg en 250ml DW5% = 1000mcg/ml",
+    "efecto": "Inotrópico +, ↓RVS",
+    "presentaciones": ["Ámpulas 250mg/5ml"],
+    "disponibilidad_cuba": "media"
+  },
+  "dopamina": {
+    "nombre": "Dopamina",
+    "indicaciones": ["Shock", "Bradicardia"],
+    "dosis_renal": "2-5 mcg/kg/min",
+    "dosis_inotropico": "5-10 mcg/kg/min",
+    "dosis_vasopresor": "10-20 mcg/kg/min",
+    "preparacion": "400mg en 250ml DW5% = 1600mcg/ml",
+    "presentaciones": ["Ámpulas 200mg/5ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "furosemida": {
+    "nombre": "Furosemida",
+    "indicaciones": ["EPA", "Sobrecarga volumen", "Hipercalemia"],
+    "dosis_inicial": "40-80mg IV",
+    "dosis_renal": "Hasta 200mg IV",
+    "infusion": "5-10mg/h",
+    "presentaciones": ["Ámpulas 20mg/2ml", "Tabletas 40mg"],
+    "disponibilidad_cuba": "alta"
+  },
+  "heparina": {
+    "nombre": "Heparina no fraccionada",
+    "indicaciones": ["SCA", "TEP", "Fibrilación auricular"],
+    "dosis_bolo": "60 UI/kg IV (max 4000 UI)",
+    "infusion": "12 UI/kg/h (max 1000 UI/h)",
+    "objetivo_ttpa": "1.5-2 veces control",
+    "presentaciones": ["Frascos 5000 UI/ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "hidrocortisona": {
+    "nombre": "Hidrocortisona",
+    "indicaciones": ["Shock refractario", "Anafilaxia", "Crisis adrenal"],
+    "dosis_shock": "50mg IV cada 6h",
+    "dosis_anafilaxia": "100-200mg IV",
+    "presentaciones": ["Ámpulas 100mg/2ml", "Bulbo 500mg"],
+    "disponibilidad_cuba": "alta"
+  },
+  "lidocaina": {
+    "nombre": "Lidocaína",
+    "indicaciones": ["FV/TV refractaria", "Anestesia local"],
+    "dosis_paro": "1-1.5mg/kg IV, luego 0.5-0.75mg/kg",
+    "dosis_maxima": "3mg/kg",
+    "infusion": "1-4mg/min",
+    "presentaciones": ["Ámpulas 100mg/5ml (2%)"],
+    "disponibilidad_cuba": "alta"
+  },
+  "magnesio": {
+    "nombre": "Sulfato de Magnesio",
+    "indicaciones": ["Torsades de pointes", "Hipomagnesemia", "Eclampsia"],
+    "dosis_torsades": "2g IV en 1-2min",
+    "dosis_eclampsia": "4-6g IV en 20min, luego 1-2g/h",
+    "presentaciones": ["Ámpulas 1g/10ml (10%)"],
+    "disponibilidad_cuba": "alta"
+  },
+  "morfina": {
+    "nombre": "Morfina",
+    "indicaciones": ["Dolor severo", "EPA (controversia)", "SCA"],
+    "dosis": "2-4mg IV cada 5-15min",
+    "dosis_maxima": "15mg",
+    "precaucion": "Depresión respiratoria, hipotensión",
+    "presentaciones": ["Ámpulas 10mg/1ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "naloxona": {
+    "nombre": "Naloxona",
+    "indicaciones": ["Sobredosis opioides"],
+    "dosis": "0.4-2mg IV/IM/IN cada 2-3min",
+    "dosis_maxima": "10mg",
+    "duracion_corta": "Puede requerir dosis repetidas",
+    "presentaciones": ["Ámpulas 0.4mg/1ml"],
+    "disponibilidad_cuba": "media"
+  },
+  "nitroglicerina": {
+    "nombre": "Nitroglicerina",
+    "indicaciones": ["SCA", "EPA", "Crisis HTA"],
+    "dosis_sl": "0.4mg cada 5min (max 3 dosis)",
+    "dosis_iv_inicial": "10-20 mcg/min",
+    "titulacion": "↑5-10 mcg/min cada 5-10min",
+    "dosis_maxima": "200 mcg/min",
+    "preparacion": "50mg en 240ml DW5% = 200mcg/ml",
+    "contraindicacion": "PAS <90, IMA VD, sildenafil 24h",
+    "presentaciones": ["Tabletas SL 0.4mg", "Ámpulas 50mg/10ml"],
+    "disponibilidad_cuba": "media"
+  },
+  "norepinefrina": {
+    "nombre": "Norepinefrina (Noradrenalina)",
+    "indicaciones": ["Shock refractario", "Sepsis"],
+    "dosis": "0.1-0.5 mcg/kg/min",
+    "preparacion": "4mg en 250ml DW5% = 16mcg/ml",
+    "efecto": "Vasopresor potente",
+    "presentaciones": ["Ámpulas 4mg/4ml"],
+    "disponibilidad_cuba": "media"
+  },
+  "salbutamol": {
+    "nombre": "Salbutamol",
+    "indicaciones": ["Asma", "EPOC", "Hipercalemia"],
+    "dosis_nebulizacion": "2.5-5mg cada 20min x 1h",
+    "dosis_hipercalemia": "10-20mg nebulizado",
+    "presentaciones": ["Solución 5mg/ml", "Aerosol 100mcg/puff"],
+    "disponibilidad_cuba": "alta"
+  },
+  "cloruro_calcio": {
+    "nombre": "Cloruro de Calcio",
+    "indicaciones": ["Hipercalemia", "Hipocalcemia", "Intoxicación bloqueadores de calcio"],
+    "dosis_hipercalemia": "1g (10ml al 10%) IV lento en 2-5min",
+    "presentaciones": ["Ámpulas 1g/10ml (10%)"],
+    "disponibilidad_cuba": "alta",
+    "precaucion": "Cardioprotector, no corrige K+"
+  },
+  "gluconato_calcio": {
+    "nombre": "Gluconato de Calcio",
+    "indicaciones": ["Hipercalemia", "Hipocalcemia"],
+    "dosis": "1-2g IV lento",
+    "presentaciones": ["Ámpulas 1g/10ml"],
+    "disponibilidad_cuba": "alta",
+    "nota": "Menos irritante que cloruro de calcio"
+  },
+  "dextrosa": {
+    "nombre": "Dextrosa",
+    "indicaciones": ["Hipoglucemia", "Hipercalemia (con insulina)"],
+    "dosis_hipoglucemia": "25-50g IV (50-100ml al 50%)",
+    "dosis_hipercalemia": "25g con 10 UI insulina regular",
+    "presentaciones": ["DW5%", "DW10%", "DW50%"],
+    "disponibilidad_cuba": "alta"
+  },
+  "insulina_regular": {
+    "nombre": "Insulina Regular",
+    "indicaciones": ["Hipercalemia", "CAD", "EHH"],
+    "dosis_hipercalemia": "10 UI IV con 25g dextrosa",
+    "dosis_cad": "0.1 UI/kg/h en infusión",
+    "presentaciones": ["Frascos 100 UI/ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "fenitoina": {
+    "nombre": "Fenitoína",
+    "indicaciones": ["Status epiléptico"],
+    "dosis_carga": "15-20mg/kg IV",
+    "velocidad": "No más de 50mg/min",
+    "mantenimiento": "5-7mg/kg/día",
+    "presentaciones": ["Ámpulas 250mg/5ml"],
+    "disponibilidad_cuba": "alta",
+    "precaucion": "Hipotensión, arritmias"
+  },
+  "diazepam": {
+    "nombre": "Diazepam",
+    "indicaciones": ["Status epiléptico", "Sedación"],
+    "dosis_status": "10mg IV, repetir cada 5-10min",
+    "dosis_maxima": "30mg",
+    "presentaciones": ["Ámpulas 10mg/2ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "midazolam": {
+    "nombre": "Midazolam",
+    "indicaciones": ["Status epiléptico", "Sedación", "RCP post-paro"],
+    "dosis_status": "10mg IM o 0.2mg/kg IV",
+    "dosis_sedacion": "0.05-0.1mg/kg bolo, infusión 1-5mg/h",
+    "presentaciones": ["Ámpulas 5mg/5ml"],
+    "disponibilidad_cuba": "alta"
+  },
+  "alteplase": {
+    "nombre": "Alteplase (rt-PA)",
+    "indicaciones": ["IMA", "ACV isquémico", "TEP masivo"],
+    "dosis_ima": "15mg bolo + 0.75mg/kg en 30min + 0.5mg/kg en 60min",
+    "dosis_acv": "0.9mg/kg (max 90mg), 10% bolo + 90% en 60min",
+    "disponibilidad_cuba": "muy baja"
+  },
+  "estreptoquinasa": {
+    "nombre": "Estreptoquinasa",
+    "indicaciones": ["IMA", "TEP"],
+    "dosis": "1.5 millones UI en 30-60min",
+    "presentaciones": ["Frascos 1.5 millones UI"],
+    "disponibilidad_cuba": "alta",
+    "precaucion": "Reacciones alérgicas, fiebre"
+  },
+  "omeprazol": {
+    "nombre": "Omeprazol",
+    "indicaciones": ["HDA", "Gastroprotección"],
+    "dosis_hda": "80mg IV bolo, luego 8mg/h x 72h",
+    "dosis_profilaxis": "40mg IV/VO cada 24h",
+    "presentaciones": ["Frascos 40mg", "Cápsulas 20mg"],
+    "disponibilidad_cuba": "alta"
+  },
+  "metoclopramida": {
+    "nombre": "Metoclopramida",
+    "indicaciones": ["Náuseas", "Vómitos", "Gastroparesia"],
+    "dosis": "10mg IV cada 6-8h",
+    "presentaciones": ["Ámpulas 10mg/2ml"],
+    "disponibilidad_cuba": "alta",
+    "precaucion": "Síntomas extrapiramidales"
+  },
+  "ondansetron": {
+    "nombre": "Ondansetrón",
+    "indicaciones": ["Náuseas", "Vómitos"],
+    "dosis": "4-8mg IV cada 8h",
+    "presentaciones": ["Ámpulas 8mg/4ml"],
+    "disponibilidad_cuba": "media"
+  }
+}
